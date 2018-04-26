@@ -14,15 +14,15 @@ pipeline {
       }
     }
 	stage('Docker pull') {
-      agent docker_dev
-      steps {
-        sh 'sudo docker pull vikson36/bb-app:${BUILD_NUMBER}'
+	 agent {docker_dev}
+         steps {
+         sh 'sudo docker pull vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
 	stage('Docker run') {
-      agent docker_dev
-      steps {
-        sh 'sudo docker container run --detach --publish 8080:8080 vikson36/bb-app:${BUILD_NUMBER}'
+         agent {docker_dev}
+         steps {
+         sh 'sudo docker container run --detach --publish 8080:8080 vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
   }
