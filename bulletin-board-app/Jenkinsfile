@@ -22,7 +22,7 @@ pipeline {
 	stage('Docker run') {
       agent docker_dev
       steps {
-        sh 'sudo docker container run --detach --publish 8080:8080 vikson36/bb-appbb-app:${BUILD_NUMBER}'
+        sh 'sudo docker container run --detach --publish 8080:8080 vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
   }
