@@ -10,7 +10,7 @@ pipeline {
     stage('Docker Push') {
       agent any
       steps {
-        sh 'sudo docker push -t vikson36/bb-app:${BUILD_NUMBER}'
+        sh 'sudo docker push vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
   }
