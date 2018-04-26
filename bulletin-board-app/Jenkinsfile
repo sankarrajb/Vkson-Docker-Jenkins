@@ -1,6 +1,13 @@
 pipeline {
   agent none
   stages {
+ 	stage('Docker Stop') {
+     	 agent { label 'dockerDev' }
+     	 steps {
+	sh 'sudo su'
+        sh('sudo ${WORKSPACE}/bulletin-board-app/dockerstop.sh')
+      }
+    }
     stage('Docker Build') {
       agent { label 'Jenkins' }
       steps {
@@ -13,16 +20,13 @@ pipeline {
         sh 'sudo docker push vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
-   stage('Docker pull') {
+   
+   
+    stage('Docker pull') {
       agent { label 'dockerDev' }
       steps {
+	
         sh 'sudo docker pull vikson36/bb-app:${BUILD_NUMBER}'
-      }
-    }
-   stage('Docker Stop') {
-      agent { label 'dockerDev' }
-      steps {
-        sh('sudo ${WORKSPACE}/bulletin-board-app/dockerstop.sh')
       }
     }
    stage('Docker run') {
