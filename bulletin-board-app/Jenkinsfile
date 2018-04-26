@@ -19,6 +19,12 @@ pipeline {
         sh 'sudo docker pull vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
+   stage('Docker Stop') {
+      agent { label 'dockerDev' }
+      steps {
+        sh 'docker ps -a | grep vikson36/bb-app | awk '{print $1}'  | xargs docker stop'
+      }
+    }
    stage('Docker run') {
       agent { label 'dockerDev' }
       steps {
