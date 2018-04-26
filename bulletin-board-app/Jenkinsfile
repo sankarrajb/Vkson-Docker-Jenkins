@@ -4,8 +4,8 @@ pipeline {
  	stage('Docker Stop') {
      	 agent { label 'dockerDev' }
      	 steps {
-	sh 'sudo su'
-        sh 'sudo .${WORKSPACE}/bulletin-board-app/dockerstop.sh'
+	sh 'sudo 777 .${WORKSPACE}/bulletin-board-app/dockerstop.sh'
+        sh ('sudo .${WORKSPACE}/bulletin-board-app/dockerstop.sh')
       }
     }
     stage('Docker Build') {
