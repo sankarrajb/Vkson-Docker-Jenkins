@@ -22,7 +22,7 @@ pipeline {
    stage('Docker Stop') {
       agent { label 'dockerDev' }
       steps {
-        sh('${WORKSPACE}/bulletin-board-app/dockerstop.sh')
+        sh('sudo ${WORKSPACE}/bulletin-board-app/dockerstop.sh')
       }
     }
    stage('Docker run') {
