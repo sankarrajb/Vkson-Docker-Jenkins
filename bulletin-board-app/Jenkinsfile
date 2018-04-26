@@ -4,7 +4,7 @@ pipeline {
  	stage('Docker Stop') {
      	 agent { label 'dockerDev' }
      	 steps {
-	sh 'sudo chmod 777 dockerstop.sh'
+	sh 'sudo chmod 777 ${WORKSPACE}/bulletin-board-app/dockerstop.sh'
         sh ('sudo .${WORKSPACE}/bulletin-board-app/dockerstop.sh')
       }
     }
