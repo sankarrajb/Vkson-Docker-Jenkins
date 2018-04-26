@@ -5,7 +5,7 @@ pipeline {
      	 agent { label 'dockerDev' }
      	 steps {
 	sh 'sudo su'
-        sh('sudo ${WORKSPACE}/bulletin-board-app/dockerstop.sh')
+        sh('sudo .${WORKSPACE}/bulletin-board-app/dockerstop.sh')
       }
     }
     stage('Docker Build') {
