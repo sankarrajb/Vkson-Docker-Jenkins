@@ -13,13 +13,13 @@ pipeline {
         sh 'sudo docker push vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
-   stage('Docker Build') {
+   stage('Docker pull') {
       agent { label 'dockerDev' }
       steps {
         sh 'sudo docker pull vikson36/bb-app:${BUILD_NUMBER}'
       }
     }
-   stage('Docker Build') {
+   stage('Docker run') {
       agent { label 'dockerDev' }
       steps {
         sh 'sudo docker container run --detach --publish 8080:8080 vikson36/bb-app:${BUILD_NUMBER}'
