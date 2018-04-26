@@ -4,7 +4,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t vikson36/bb-app:v4 /var/lib/jenkins/workspace/docker_pipeline/bulletin-board-app'
+        sh 'sudo docker build -t vikson36/bb-app:v4 /var/lib/jenkins/workspace/docker_pipeline/bulletin-board-app'
       }
     }
   }
