@@ -4,14 +4,14 @@ pipeline {
     stage('Docker Build') {
       agent { label 'Jenkins' }
       steps {
-        sh 'sudo docker build -t vikson36/bb-app:${BUILD_NUMBER} ${WORKSPACE}/bulletin-board-app'
+        sh 'sudo docker build -t sivasankarb9/bb-app:${BUILD_NUMBER} ${WORKSPACE}/bulletin-board-app'
       }
     }
 	  
     stage('Docker Push') {
       agent { label 'Jenkins' }
       steps {
-        sh 'sudo docker push vikson36/bb-app:${BUILD_NUMBER}'
+        sh 'sudo docker push sivasankarb9/bb-app:${BUILD_NUMBER}'
       }
     }
    
@@ -19,7 +19,7 @@ pipeline {
       agent { label 'dockerDev' }
       steps {
 	
-        sh 'sudo docker pull vikson36/bb-app:${BUILD_NUMBER}'
+        sh 'sudo docker pull sivasankarb9/bb-app:${BUILD_NUMBER}'
       }
     }
 	  
@@ -34,7 +34,7 @@ pipeline {
    stage('Docker run') {
       agent { label 'dockerDev' }
       steps {
-        sh 'sudo docker container run --detach --publish 8080:8080 vikson36/bb-app:${BUILD_NUMBER}'
+        sh 'sudo docker container run --detach --publish 8080:8080 sivasankarb9/bb-app:${BUILD_NUMBER}'
       }
     }
 	  
