@@ -15,6 +15,30 @@ pipeline {
       }
     }
    
+    stage('Docker pull') {
+      agent { label 'dockerDev' }
+      steps {
+	
+        sh 'sudo docker pull sivasankarb9/bb-app:${BUILD_NUMBER}'
+      }
+    }
+	  
+    stage('Docker Stop') {
+      agent { label 'dockerDev' }
+      steps {
+	sh 'sudo chmod 777 ${WORKSPACE}/bulletin-board-app/dockerstop.sh'
+        sh ('sudo ${WORKSPACE}/bulletin-board-app/dockerstop.sh')
+      }
+    }
+	  
+   stage('Docker run') {
+      agent { label 'dockerDev' }
+      steps {
+        sh 'sudo docker container run --detach --publish 8080:8080 sivasankarb9/bb-app:${BUILD_NUMBER}'
+      }
+    }
+	  
+	  
 }
 	
 }
