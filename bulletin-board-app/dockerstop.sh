@@ -1,1 +1,1 @@
-sudo docker ps -a | grep sivasankarb9/bb-app |  awk '{print $1}'  | xargs docker stop ps -aq
+sudo docker ps -a | grep sivasankarb9/bb-app |  awk '{print $1}'  | xargs docker stop $(docker ps -aq)
